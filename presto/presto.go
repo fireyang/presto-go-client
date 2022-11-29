@@ -751,8 +751,7 @@ func (qr *driverRows) Next(dest []driver.Value) error {
 	if qr.columns == nil || qr.rowindex >= len(qr.data) {
 		if qr.nextURI == "" {
 			qr.err = io.EOF
-		}
-		if err := qr.fetch(true); err != nil {
+		}else if err := qr.fetch(true); err != nil {
 			qr.err = err
 		}
 		if qr.err == io.EOF {
@@ -1367,6 +1366,7 @@ func (s *NullSlice3Float64) Scan(value interface{}) error {
 }
 
 var timeLayouts = []string{
+    "2006-01-02 15:04:05.000000",
 	"2006-01-02",
 	"15:04:05.000",
 	"2006-01-02 15:04:05.000",
